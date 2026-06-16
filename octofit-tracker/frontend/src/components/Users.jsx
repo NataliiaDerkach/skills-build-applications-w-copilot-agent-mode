@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+// Codespaces URL example: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users
+
 function parseListResponse(json, keyFallbacks = ['users', 'data', 'items', 'results']) {
   if (Array.isArray(json)) return json
   for (const key of keyFallbacks) {

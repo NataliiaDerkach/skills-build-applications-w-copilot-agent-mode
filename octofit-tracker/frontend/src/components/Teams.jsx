@@ -1,3 +1,5 @@
+
+// Codespaces URL example: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams
 import { useEffect, useState } from 'react'
 
 function parseListResponse(json, keyFallbacks = ['teams', 'data', 'items', 'results']) {
