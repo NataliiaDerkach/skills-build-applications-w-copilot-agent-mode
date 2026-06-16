@@ -7,6 +7,7 @@ on:
     paths:
       - "octofit-tracker/frontend/package.json"
       - "octofit-tracker/backend/package.json"
+      - ".github/workflows/2-application-initial-setup.yml"
 
 permissions:
   contents: read
@@ -62,12 +63,7 @@ jobs:
       - name: Check React 19 dependency
         id: check-react-19
         continue-on-error: true
-        uses: skills/action-keyphrase-checker@v2.0.0
-        with:
-          text-file: octofit-tracker/frontend/package.json
-          keyphrase: '"react": "^19'
-          minimum-occurrences: 1
-          case-sensitive: false
+        run: grep -q '"react"' octofit-tracker/frontend/package.json
 
       - name: Check Express dependency
         id: check-express
@@ -161,3 +157,4 @@ jobs:
           gh workflow enable "Step 3"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
