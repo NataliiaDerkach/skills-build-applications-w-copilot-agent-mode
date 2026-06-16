@@ -82,3 +82,5 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
   console.log(`API base URL: ${API_BASE_URL}`);
 });
+
+// Intentional no-op comment to trigger CI path filters
