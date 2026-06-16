@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Express, Request, Response } from 'express';
-import mongoose from 'mongoose';
+import { connectDatabase, MONGODB_URI } from './config/database.js';
 import { UserModel } from './models/user.js';
 import { TeamModel } from './models/team.js';
 import { ActivityModel } from './models/activity.js';
@@ -13,7 +13,6 @@ const CODESPACE_NAME = process.env.CODESPACE_NAME;
 const API_BASE_URL = CODESPACE_NAME
   ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
   : `http://localhost:${PORT}/api`;
-const MONGODB_URI = 'mongodb://localhost:27017/octofit_db';
 
 // Middleware
 app.use(express.json());
@@ -30,10 +29,9 @@ app.use((req: Request, res: Response, next) => {
 });
 
 // MongoDB Connection
-mongoose
-  .connect(MONGODB_URI)
+connectDatabase()
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log(`Connected to MongoDB at ${MONGODB_URI}`);
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);
